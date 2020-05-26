@@ -1,5 +1,5 @@
 #purpose of script - initialise project with defined parameters
-version_number <- 0.5
+version_number <- 1.0
 
 paste("Version", version_number, "of the course catalogue scraping project. Please see Readme for more details.")
 remove(version_number)

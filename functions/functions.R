@@ -1,47 +1,6 @@
 #purpose of script: house all required functions for workflow
 
 
-
-#######################01_scrape_repo_names.R############extract_last_page_number#########################
-#########################01_scrape_repo_names.R############extract_last_page_number#########################
-#########################01_scrape_repo_names.R############extract_last_page_number#########################
-
-
-
-get_last_page <- function(html) {
-  
-  #extract all href attributes on search result page
-  
-  search_result_links <- html %>% read_html() %>% html_nodes("a") %>% html_text()
-  
-  #node of interest here is node 82. Positive indexing will change dependent upon number of pages
-  #but negative indexing should be correct regardless of number of pages in search return
-  
-  #need to subtract from length of the character vector,as negative indexing not playing ball
-  search_result_links[(length(search_result_links)-16)] %>% 
-    #take the raw string
-    unname() %>% 
-    #convert to a number %>% 
-    as.numeric()
-  
-}
-
-
-#########################01_scrape_repo_names.R############generate_urls#########################
-#########################01_scrape_repo_names.R############generate_urls#########################
-#########################01_scrape_repo_names.R############generate_urls#########################
-
-
-
-generate_urls <- function(url_suffix){
-  
-  valid_urls <- str_c(url_prefix, 1:last_page, url_suffix)
-  
-
-}
-
-
-
 #########################01_scrape_repo_names.R############extract_repo_names#########################
 #########################01_scrape_repo_names.R############extract_repo_names#########################
 #########################01_scrape_repo_names.R############extract_repo_names#########################
@@ -57,12 +16,31 @@ extract_repo_names <- function(urls) {
     #extract all href links
     html_attr('href')
   
-  #cleanse the links. First step- remove all search links
-  cleansed_hrefs <- hrefs[!grepl("search", hrefs)]
+  #filter only links with 2 "/" occurences
+  repo_names_counted <- unique(hrefs[str_count(hrefs, "/") == 2])
   
-  #these links include an assortment of unrelated links. Filter only to relevant:
-  course_repo_names <- cleansed_hrefs[grepl("datasciencecampus", cleansed_hrefs)]
+  #filter these links to datasciencecampus repo name
+  course_repo_names <- repo_names_counted[grepl("/datasciencecampus/", repo_names_counted)]
+
+  
   course_repo_names
+}
+
+
+#########################01_scrape_repo_names.R############cbind.fill#########################
+#########################01_scrape_repo_names.R############cbind.fill#########################
+#########################01_scrape_repo_names.R############cbind.fill#########################
+
+
+#cbind fill alternative as rowr package removed from CRAN 
+
+
+cbind.fill <- function(...){
+  nm <- list(...) 
+  nm <- lapply(nm, as.matrix)
+  n <- max(sapply(nm, nrow)) 
+  do.call(cbind, lapply(nm, function (x) 
+    rbind(x, matrix(, n-nrow(x), ncol(x))))) 
 }
 
 

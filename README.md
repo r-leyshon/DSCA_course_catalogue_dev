@@ -3,6 +3,11 @@
 Version Notes:
 
 
+## 1.0
+* Github search API used to avoid issue in generalisation in identifying number of search result pages
+* Now all open repos from DSC are available to scrape
+* despite scopes configured for private repos - they do not appear
+* last updated column script hashed out. Amend script logic for 1.1.
 
 ### 0.5:
 * Work on generalising the page indexing function, to consider search results with larger number of pages. <ongoing>

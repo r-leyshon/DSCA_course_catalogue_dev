@@ -19,7 +19,7 @@ description_matrix <- t(sapply(course_desc_list, "[", i = seq.max))
 output_dataframe <- cbind(output_dataframe, description_matrix)
 
 #put a prefix in front of all text columns present
-colnames(output_dataframe)[5:ncol(output_dataframe)] <-  paste("Paragraph", colnames(output_dataframe)[5:ncol(output_dataframe)])
+colnames(output_dataframe)[4:ncol(output_dataframe)] <-  paste("Paragraph", colnames(output_dataframe)[4:ncol(output_dataframe)])
 
 "Go back is not user created content so filter out"
 
@@ -51,10 +51,9 @@ saveRDS(output_dataframe, "cache/course_catalogue.rds")
 
 
 #write data to file
-# xlsx::write.xlsx(output_dataframe, "output_data/course_catalogue.xlsx",
-#                  sheetName = paste(Sys.Date()),
-#                  row.names = FALSE)
-
+xlsx::write.xlsx(output_dataframe, "output_data/course_catalogue.xlsx",
+                 sheetName = paste(Sys.Date()),
+                 row.names = FALSE)
 
 
 
