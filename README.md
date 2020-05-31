@@ -2,6 +2,11 @@
 
 Version Notes:
 
+### 1.1
+* Github search API results used to extract selection of repo metadata
+* last updated script issue resolved
+* 2 outputs: repo_catalogue.xlsx & course_catalogue.xlsx
+
 
 ## 1.0
 * Github search API used to avoid issue in generalisation in identifying number of search result pages

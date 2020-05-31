@@ -44,40 +44,6 @@ cbind.fill <- function(...){
 }
 
 
-
-#########################02_scrape_last_updated.R############extract_mr3#########################
-#########################02_scrape_last_updated.R############extract_mr3#########################
-#########################02_scrape_last_updated.R############extract_mr3#########################
-
-
-
-
-#applicable function for extracting cleansed 'mr3' xpath
-
-extract_mr3 <- function(urls) {
-  #parse search page
-  mr3s <-  urls %>%
-    read_html() %>% 
-    #extract all mr3 xpaths
-    xml_find_all(xpath = '//*[contains(concat( " ", @class, " " ), concat( " ", "mr-3", " " ))]') %>% 
-    #extract all text
-    html_text() 
-  
-  #subset this text by strings containing "updated"
-  updated_mr3 <- mr3s[grep("Updated", mr3s)]
-  
-  #remove the standard tag format
-  mr3_cleansed <- str_remove(updated_mr3, "\n            Updated ")
-  
-  mr3_cleansed
-  
-}
-
-
-
-
-
-
 #########################04_scrape_course_names.R############extract_course_name#########################
 #########################04_scrape_course_names.R############extract_course_name#########################
 #########################04_scrape_course_names.R############extract_course_name#########################
