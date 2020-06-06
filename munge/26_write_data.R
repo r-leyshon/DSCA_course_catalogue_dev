@@ -11,11 +11,6 @@ xlsx::write.xlsx(output_dataframe, "output_data/repo_catalogue.xlsx",
 
 
 
-#filter data to course catalogue
-course_dataframe <- output_dataframe[grep("DSCA", output_dataframe$course_repo_names), ]
-
-
-
 saveRDS(course_dataframe, "cache/course_catalogue.rds")
 
 

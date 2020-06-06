@@ -23,4 +23,6 @@ email_complete <- gm_mime() %>%
 
 gm_send_message(email_complete)
 
-
+remove(list = 'email_text',
+       'email_complete',
+       'github_token')
