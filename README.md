@@ -6,7 +6,7 @@ Version Notes:
 * zip folder name now incremented with Sys.time() to allow multiple runs on one day
 * identify columns of interest in readme by name[NB]
 * select columns of interest for website publication[NB]
-[NB] functionality is there but requires consistent readme formatting
+* [NB] functionality is there but requires consistent readme formatting
 * zip folder now saved to 'zipped_output' as incremental runs were saving multiple zipped folders
 
 
