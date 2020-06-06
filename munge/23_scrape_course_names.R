@@ -1,4 +1,4 @@
-"function of script: scrape course titles"
+"function of script: scrape course readme titles"
 
 
 

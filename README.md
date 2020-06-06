@@ -6,6 +6,8 @@ Version Notes:
 * Github search API results used to extract selection of repo metadata
 * last updated script issue resolved
 * 2 outputs: repo_catalogue.xlsx & course_catalogue.xlsx
+* Conflict in message() with base and gmailr resolved
+* Troubleshooting zipr behaviour: folder name requires increment. Used Sys.Date().
 
 
 ## 1.0

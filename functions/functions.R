@@ -60,9 +60,9 @@ extract_course_name <- function(pages) {
     
     #catch errors when readme is not available and assign a placeholder string
     error = function(cond) {
-      message("Readme header does not appear to exist for course")
+      base::message("Readme header does not appear to exist for course")
 
-      message("Course title not extracted. Check 'output_dataframe' for clarification")
+      base::message("Course title not extracted. Check 'output_dataframe' for clarification")
       # Return value in case of error
       return("No readme header is present.")
     }
