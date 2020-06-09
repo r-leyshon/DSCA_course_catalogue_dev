@@ -1,4 +1,6 @@
 ### v1.3
+* Remove content surplus to requirements
+* make the identification of columns from readme more flexible with grep / grepl
 * cache course list & version numbers for comparison on successive runs
 * write if statement to check on above conditions prior to Emailing.
 * output full dataframe to publishing, but tag updated repos with is_updated column
