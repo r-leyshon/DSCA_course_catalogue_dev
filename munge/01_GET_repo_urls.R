@@ -81,11 +81,16 @@ names(output_dataframe)[2] <- 'site_link'
 output_dataframe$site_link[is.na(output_dataframe$site_link)] <- paste0("https://github.com/datasciencecampus/", output_dataframe$course_repo_names[is.na(output_dataframe$site_link)])
 
 
+#filter these urls to dsca rows only.
+output_dataframe <- output_dataframe[grep("DSCA", output_dataframe$site_link), ]
+
+
 #remove the defunct objects
 remove(list = c(
                 'extract_repo_names',
                 'gtoken',
                 'myapp',
                 'request_result',
-                'course_repo_names')
+                'course_repo_names',
+                'req_content')
        )

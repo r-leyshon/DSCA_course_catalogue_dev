@@ -2,6 +2,14 @@
 
 Version Notes:
 
+### 1.3
+* Added data folders to .gitignore
+* Moved filter to DSCA repos only from script 25 to script 01
+* Deleted all surplus GET scripts and renumbered remaining scripts
+* Script 04_extract_version.R added.
+* reprex for method used to flexibly subset based on grep in tests folder.
+* Script 06_scrape_course_summary.R added 
+
 ### 1.2
 * zip folder name now incremented with Sys.time() to allow multiple runs on one day
 * identify columns of interest in readme by name[NB]

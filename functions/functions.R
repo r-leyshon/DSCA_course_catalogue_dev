@@ -44,9 +44,9 @@ cbind.fill <- function(...){
 }
 
 
-#########################04_scrape_course_names.R############extract_course_name#########################
-#########################04_scrape_course_names.R############extract_course_name#########################
-#########################04_scrape_course_names.R############extract_course_name#########################
+#########################03_scrape_course_names.R############extract_course_name#########################
+#########################03_scrape_course_names.R############extract_course_name#########################
+#########################03_scrape_course_names.R############extract_course_name#########################
 
 #function to extract course titles from course pages. used in munge script 03.
 
@@ -69,14 +69,53 @@ extract_course_name <- function(pages) {
     )
   #return output with course titles or placeholder string in cases where errors run
   return(function_output)
-  course_title
   
 }
 
 
-#########################06_scrape_course_desc.R############extract_course_desc#########################
-#########################06_scrape_course_desc.R############extract_course_desc#########################
-#########################06_scrape_course_desc.R############extract_course_desc#########################
+#########################04_extract_version.R############extract_version#########################
+#########################04_extract_version.R############extract_version#########################
+#########################04_extract_version.R############extract_version#########################
+
+#function to extract course titles from course pages. used in munge script 03.
+
+
+
+extract_version <- function(pages) {
+  
+  #assign the output of the function with trycatch to deal with any course that doesn't have a readme
+  function_output <- tryCatch(
+    
+    #course title extracted from 2nd h3 xpath. This is the try.
+    {html_text(xml_find_all(pages, xpath = "//h3")[2]) %>%
+        #lower the text
+        tolower() %>% 
+        #remove version text
+        str_remove("version ") %>% 
+        #convert to numeric
+        as.numeric()
+      },
+    
+    #catch errors when readme is not available and assign NA
+    error = function(cond) {
+      base::message("Version number does not appear to exist for course")
+      
+      base::message("Course version number not extracted. Check 'output_dataframe' for clarification")
+      # Return NA in case of error
+      return(NA)
+    }
+  )
+  #return output with course titles or placeholder string in cases where errors run
+  return(function_output)
+  
+}
+
+
+
+
+#########################05_scrape_readme_text.R############extract_course_desc#########################
+#########################05_scrape_readme_text.R############extract_course_desc#########################
+#########################05_scrape_readme_text.R############extract_course_desc#########################
 
 
 extract_course_description <- function(pages){

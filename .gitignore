@@ -1,4 +1,7 @@
 /git_ignore/
+/output_data/
+/zipped_output/
+/cache/
 *.RData
 *.Rhistory
 .Rproj.user

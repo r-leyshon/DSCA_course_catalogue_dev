@@ -1,5 +1,5 @@
 ### v1.3
-* Remove content surplus to requirements
+* Below is achieved with course summary. Now need to rinse and repeat for other required fields.
 * make the identification of columns from readme more flexible with grep / grepl
 * cache course list & version numbers for comparison on successive runs
 * write if statement to check on above conditions prior to Emailing.
@@ -9,4 +9,3 @@
 
 ### Parked
 * schedule script execution on remote server
-* feedback from publishing in terms of whether any additional API metadata required. If not, hash out.
