@@ -2,6 +2,10 @@
 
 Version Notes:
 
+### 1.4
+* Added scripts to scrape columns for learning outcome, lead developer, course reviewer(s) & skill level.
+
+
 ### 1.3
 * Added data folders to .gitignore
 * Moved filter to DSCA repos only from script 25 to script 01
