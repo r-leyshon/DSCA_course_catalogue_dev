@@ -3,12 +3,13 @@
 # Read the 2 xlsx file names from output_data directory
 files2zip <- dir('output_data', full.names = TRUE)
 
-#zip folder appears to not like spaces in filename
+#zip folder appears to not like spaces and can't have colons in filename
 current_time <- str_replace_all(as.character(Sys.time()), ":", "-")
 current_time <- str_replace_all(current_time, " ", "_")
 
 current_directory <- getwd()
 
+#create the folder name, using the sys.time to increment
 zip_folder_name <- paste0(current_directory,"/zipped_output/dsca_cc_", current_time, ".zip")
 
 #zip files to folder

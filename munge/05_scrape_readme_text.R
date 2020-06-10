@@ -18,12 +18,26 @@ description_matrix <- t(sapply(course_desc_list, "[", i = seq.max))
 #This can then be cbind'ed to the output_dataframe.
 output_dataframe <- cbind(output_dataframe, description_matrix)
 
-#put a prefix in front of all text columns present
-colnames(output_dataframe)[24:ncol(output_dataframe)] <-  paste0("Paragraph_", colnames(output_dataframe)[24:ncol(output_dataframe)])
-
 #"Go back is not user created content so filter out"
 
 output_dataframe[output_dataframe == "Go back"] <- NA 
+
+
+
+
+
+
+
+
+"Working here"
+
+
+
+
+#put a prefix in front of all text columns present
+colnames(output_dataframe)[5:ncol(output_dataframe)] <-  paste0("Paragraph_", colnames(output_dataframe)[5:ncol(output_dataframe)])
+
+
 
 
 remove(list = c('course_desc_list',
@@ -38,10 +52,10 @@ remove(list = c('course_desc_list',
 #print message highlighting all repos where there doesn't appear to be a readme description
 
 #only print if readmes are absent
-if (any(is.na(output_dataframe[, 24]))) {
+if (any(is.na(output_dataframe[, 5]))) {
 
 print(paste("There is no readme description available for: ",
-      output_dataframe$course_repo_names[is.na(output_dataframe[, 24])]
+      output_dataframe$course_repo_names[is.na(output_dataframe[, 5])]
       ))
 
 }
