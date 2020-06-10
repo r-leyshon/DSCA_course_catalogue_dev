@@ -131,3 +131,101 @@ extract_course_description <- function(pages){
   
 }
 
+
+#########################11_scrape_readme_listnodes.R############extract_course_type#########################
+#########################11_scrape_readme_listnodes.R############extract_course_type#########################
+#########################11_scrape_readme_listnodes.R############extract_course_type#########################
+
+
+extract_course_type <- function(pages){
+  
+  list_text <- pages %>% html_nodes("li") %>% html_text()
+  
+  #lower for pattern matching
+  lowered_list_text <- list_text %>% tolower()
+  
+  #subset this character vector by:
+  #start  - the last text value that contains "\n" plus one
+  #end - the first value that contains 'Github, Inc.' minus one
+  #find first index
+  start_index <- grep("\n", lowered_list_text)[length(grep("\n", lowered_list_text))] + 1
+  
+  #find end index
+  end_index <- grep("github, inc.", lowered_list_text)[length(grep("github, inc.", lowered_list_text))] - 1
+  
+  
+  #subset the character vector by these indices
+  user_generated_li <- list_text[start_index:end_index]
+  
+  #pull the last 3 elements for course type 
+  course_type_test <- paste(tail(user_generated_li, 3), collapse = "; ")
+  
+  #if any of these patterns are detected, assign the value to course type
+  if (grepl("E learning", course_type_test) |
+      grepl("Self learning", course_type_test) |
+      grepl("Face to face", course_type_test)
+  ){
+    course_type <- course_type_test
+  } else {
+    #otherwise use placeholder text
+    course_type <- "No course type found"
+    
+  }
+  
+  return(course_type)
+  
+} #end of function
+
+
+
+#########################12_scrape_lo_detail.R############extract_lo_detail#########################
+#########################12_scrape_lo_detail.R############extract_lo_detail#########################
+#########################12_scrape_lo_detail.R############extract_lo_detail#########################
+
+
+
+extract_lo_detail <- function(pages){
+  
+  list_text <- pages %>% html_nodes("li") %>% html_text()
+  
+  #lower for pattern matching
+  lowered_list_text <- list_text %>% tolower()
+  
+  #subset this character vector by:
+  #start  - the last text value that contains "\n" plus one
+  #end - the first value that contains 'Github, Inc.' minus one
+  #find first index
+  start_index <- grep("fetching contributors", lowered_list_text)[length(grep("fetching contributors", lowered_list_text))] + 2
+  
+  #find end index
+  end_index <- grep("github, inc.", lowered_list_text)[1] - 1
+  
+  #in the case of missing readmes, the above method of finding indexes can result in an end_index smaller
+  #than start_index. Check for this condition and assign a placeholder
+  
+  if (start_index <= end_index){
+    
+    #subset the character vector by these indices
+    user_generated_li <- list_text[start_index:end_index]
+  } else {
+    lo_detail <- "No readme found"
+    return(lo_detail)
+    next
+  }
+  
+  
+  #pull any list object that does not match a course type 
+  lo_detail_test <- paste(user_generated_li[!(grepl("E learning", user_generated_li) |
+                                                grepl("Self learning", user_generated_li) |
+                                                grepl("Face to face", user_generated_li) |
+                                                grepl("%\n", user_generated_li))], collapse = "; ")
+  #some readme lists have \n linebreaks while others don't. Cleanse if present.
+  lo_detail_test <- str_replace_all(lo_detail_test, "\n", " ")
+  
+  lo_detail <- lo_detail_test
+  
+  
+  return(lo_detail)
+  
+} #end of function
+

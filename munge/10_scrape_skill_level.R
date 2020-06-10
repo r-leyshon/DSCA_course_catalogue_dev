@@ -89,6 +89,7 @@ remove(list =
          'count',
        'skill_levels',
        'end_index',
-       'start_index'
+       'start_index',
+       'lowered_output'
        )
 

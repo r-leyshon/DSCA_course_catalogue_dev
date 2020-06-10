@@ -2,6 +2,10 @@
 
 Version Notes:
 
+## 2.0
+* Added scripts to scrape list content from readmes, including learning objectives & course type.
+
+
 ### 1.4
 * Added scripts to scrape columns for learning outcome, lead developer, course reviewer(s) & skill level.
 

@@ -1,4 +1,4 @@
-#purpose of script: scrape first readme paragraph as course description
+#purpose of script: scrape  readme paragraph text
 
 
 #apply the function to extract course descriptions from the parsed course list
@@ -24,16 +24,6 @@ output_dataframe[output_dataframe == "Go back"] <- NA
 
 
 
-
-
-
-
-
-"Working here"
-
-
-
-
 #put a prefix in front of all text columns present
 colnames(output_dataframe)[5:ncol(output_dataframe)] <-  paste0("Paragraph_", colnames(output_dataframe)[5:ncol(output_dataframe)])
 
@@ -44,8 +34,7 @@ remove(list = c('course_desc_list',
                 'n.obs',
                 'seq.max',
                 'description_matrix',
-                'extract_course_description',
-                'parsed_course_pages'))
+                'extract_course_description'))
 
 
 

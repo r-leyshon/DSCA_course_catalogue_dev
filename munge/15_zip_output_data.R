@@ -1,7 +1,7 @@
 #purpose of script: zip output files ready for emailing
 
 # Read the 2 xlsx file names from output_data directory
-files2zip <- dir('output_data', full.names = TRUE)
+files2zip <- dir('output_data/', full.names = TRUE)
 
 #zip folder appears to not like spaces and can't have colons in filename
 current_time <- str_replace_all(as.character(Sys.time()), ":", "-")
