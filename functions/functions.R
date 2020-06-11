@@ -145,31 +145,36 @@ extract_course_type <- function(pages){
   lowered_list_text <- list_text %>% tolower()
   
   #subset this character vector by:
-  #start  - the last text value that contains "\n" plus one
-  #end - the first value that contains 'Github, Inc.' minus one
+  #start - find the first node containing e learning
   #find first index
-  start_index <- grep("\n", lowered_list_text)[length(grep("\n", lowered_list_text))] + 1
+  start_index <- grep("e learning", lowered_list_text)[length(grep("e learning", lowered_list_text))]
   
-  #find end index
-  end_index <- grep("github, inc.", lowered_list_text)[length(grep("github, inc.", lowered_list_text))] - 1
+  #find end index containing face to face
+  end_index <- grep("face to face", lowered_list_text)[length(grep("face to face", lowered_list_text))]
   
   
-  #subset the character vector by these indices
-  user_generated_li <- list_text[start_index:end_index]
-  
-  #pull the last 3 elements for course type 
-  course_type_test <- paste(tail(user_generated_li, 3), collapse = "; ")
-  
-  #if any of these patterns are detected, assign the value to course type
-  if (grepl("E learning", course_type_test) |
-      grepl("Self learning", course_type_test) |
-      grepl("Face to face", course_type_test)
-  ){
-    course_type <- course_type_test
+  #need to cover missing course types here
+  if (length(start_index) == 0 | length(end_index) == 0){
+    course_type <- "No course type detected"
   } else {
-    #otherwise use placeholder text
-    course_type <- "No course type found"
     
+    #subset the character vector by these indices
+    user_generated_li <- list_text[start_index:end_index]
+    
+    #pull the last 3 elements for course type 
+    course_type_test <- paste(tail(user_generated_li, 3), collapse = "; ")
+    
+    #if any of these patterns are detected, assign the value to course type
+    if (grepl("E learning", course_type_test) |
+        grepl("Self learning", course_type_test) |
+        grepl("Face to face", course_type_test)
+    ){
+      course_type <- course_type_test
+    } else {
+      #otherwise use placeholder text
+      course_type <- "No course type found"
+      
+    }
   }
   
   return(course_type)
@@ -195,7 +200,8 @@ extract_lo_detail <- function(pages){
   #start  - the last text value that contains "\n" plus one
   #end - the first value that contains 'Github, Inc.' minus one
   #find first index
-  start_index <- grep("fetching contributors", lowered_list_text)[length(grep("fetching contributors", lowered_list_text))] + 2
+  #Mostly the node to use shows up as "fetching contributors", in a minority of cases it's "contributors"
+  start_index <- grep("contributors", lowered_list_text)[length(grep("contributors", lowered_list_text))] + 2
   
   #find end index
   end_index <- grep("github, inc.", lowered_list_text)[1] - 1

@@ -10,6 +10,6 @@ output_dataframe <- output_dataframe %>% select(readme_title,
                                                 site_link,
                                                 lead_developer,
                                                 course_reviewer,
-                                                learning_objectives)
+                                                learning_objective_detail)
 
 

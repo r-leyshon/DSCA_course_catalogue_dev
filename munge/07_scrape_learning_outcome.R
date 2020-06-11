@@ -17,16 +17,16 @@ course_objectives <- character()
 
 #continue looping until every row iterated
 while(count <= nrow(lowered_output)){
-  #find first instance of "course summary"
-  start_index <- grep("learning outcome", lowered_output[count, ])[1]+1 #+1 for column following "course summary"
-  #find first instance of "learning outcome"
+  #find first instance of "learning objective"
+  start_index <- grep("learning objective", lowered_output[count, ])[1]+1 #+1 for column following "course summary"
+  #find first instance of "lead developer"
   end_index <- grep("lead developer", lowered_output[count, ])[1]-1 #-1 for column preceeding "learning outcome"
   
   #need additional logic to catch start / end index having a zero length / NA
   if (length(start_index) == 0 | is.na(start_index) &
       length(end_index) == 0 | is.na(end_index)){
     
-    course_objectives <- c(course_objectives, "learning outcome not found")
+    course_objectives <- c(course_objectives, "learning objective not found")
     print(paste("start index not found for iteration ", count))
     print(paste("end index not found for iteration ", count))
     

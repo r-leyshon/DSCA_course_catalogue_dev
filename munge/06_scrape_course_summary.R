@@ -26,7 +26,7 @@ while(count <= nrow(lowered_output)){
   #find first instance of "course summary"
   start_index <- grep("course summary", lowered_output[count, ])[1]+1 #+1 for column following "course summary"
   #find first instance of "learning outcome"
-  end_index <- grep("learning outcome", lowered_output[count, ])[1]-1 #-1 for column preceeding "learning outcome"
+  end_index <- grep("learning objective", lowered_output[count, ])[1]-1 #-1 for column preceeding "learning outcome"
   
   #need additional logic to catch start / end index having a zero length / NA
   if (length(start_index) == 0 | is.na(start_index) &

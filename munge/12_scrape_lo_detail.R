@@ -8,7 +8,7 @@ lo_detail_list <- lapply(parsed_course_pages, FUN = extract_lo_detail)
 lo_detail <- list.rbind(lo_detail_list)
 
 #save as a column in dataframe
-output_dataframe$learning_objectives <- lo_detail
+output_dataframe$learning_objective_detail <- lo_detail
 
 
 

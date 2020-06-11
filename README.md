@@ -2,6 +2,9 @@
 
 Version Notes:
 
+### 2.1
+* Further error handling in instances of missing readmes
+
 ## 2.0
 * Added scripts to scrape list content from readmes, including learning objectives & course type.
 
