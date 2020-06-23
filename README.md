@@ -2,6 +2,12 @@
 
 Version Notes:
 
+### 2.2
+* Git ignore updated to ensure expected folders can be cloned
+* Changed function to output to excel, no dependency on Java.
+* Adjusted script 15_zip_output so that readme was not sent in Email
+* Adjusted order of columns sent to customer (customer request)
+
 ### 2.1
 * Further error handling in instances of missing readmes
 

@@ -18,7 +18,7 @@ course_objectives <- character()
 #continue looping until every row iterated
 while(count <= nrow(lowered_output)){
   #find first instance of "learning objective"
-  start_index <- grep("learning objective", lowered_output[count, ])[1]+1 #+1 for column following "course summary"
+  start_index <- grep("course objective", lowered_output[count, ])[1]+1 #+1 for column following "course summary"
   #find first instance of "lead developer"
   end_index <- grep("lead developer", lowered_output[count, ])[1]-1 #-1 for column preceeding "learning outcome"
   

@@ -1,6 +1,6 @@
-/git_ignore/
-/output_data/
-/zipped_output/
+/git_ignore/*
+/output_data/*.csv
+/zipped_output/*.zip
 /cache/
 *.RData
 *.Rhistory

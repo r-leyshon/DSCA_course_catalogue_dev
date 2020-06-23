@@ -1,6 +1,5 @@
 #purpose of script: scrape readme lists, extract & assign learning objective detail
 
-
 #apply the function to extract course descriptions from the parsed course list
 lo_detail_list <- lapply(parsed_course_pages, FUN = extract_lo_detail)
 
