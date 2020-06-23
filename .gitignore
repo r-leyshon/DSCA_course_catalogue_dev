@@ -1,7 +1,7 @@
 /git_ignore/*
-/output_data/*.csv
+/output_data/*.xlsx
 /zipped_output/*.zip
-/cache/
+/cache/*.rds
 *.RData
 *.Rhistory
 .Rproj.user
