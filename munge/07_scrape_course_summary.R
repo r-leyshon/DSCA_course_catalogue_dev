@@ -1,11 +1,5 @@
 #function of script: extract course summary
 
-#lower case of all columns
-lowered_output <- 
-  apply(output_dataframe,
-        FUN = tolower,
-        #iterate over columns
-        MARGIN = 2)
 
 
 #find course summary pattern

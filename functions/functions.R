@@ -187,7 +187,7 @@ extract_course_type <- function(pages){
 #########################12_scrape_lo_detail.R############extract_lo_detail#########################
 #########################12_scrape_lo_detail.R############extract_lo_detail#########################
 
-
+#pages <- parsed_course_pages[[11]]
 
 extract_lo_detail <- function(pages){
   
@@ -197,11 +197,10 @@ extract_lo_detail <- function(pages){
   lowered_list_text <- list_text %>% tolower()
   
   #subset this character vector by:
-  #start  - the last text value that contains "\n" plus one
+  #start  - the last text value that contains "\n                  tags" plus one
   #end - the first value that contains 'Github, Inc.' minus one
   #find first index
-  #Mostly the node to use shows up as "fetching contributors", in a minority of cases it's "contributors"
-  start_index <- grep("contributors", lowered_list_text)[length(grep("contributors", lowered_list_text))] + 2
+  start_index <- grep("\n                  tags", lowered_list_text)[length(grep("\n                  tags", lowered_list_text))] + 1
   
   #find end index
   end_index <- grep("github, inc.", lowered_list_text)[1] - 1
