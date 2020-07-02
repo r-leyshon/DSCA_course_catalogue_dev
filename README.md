@@ -2,6 +2,11 @@
 
 Version Notes:
 
+### 2.3
+* Course duration script added
+* Error in scrape_lo_detail adjusted. Structure of parsed course pages changed again. Keep an eye on this. Now using "n/          tags" +1 pattern to decide start index for LO detail.
+
+
 ### 2.2
 * Git ignore updated to ensure expected folders can be cloned
 * Changed function to output to excel, no dependency on Java.
