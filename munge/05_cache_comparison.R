@@ -106,8 +106,47 @@ saveRDS(object = newstate_course_versions, file = "cache/prior_courseversions.rd
 
 
 
-stop(TRUE)
+# control flow ------------------------------------------------------------
 
-"left off here. now an if stetement that executes an email if status 100 then stops. 
-else continue and use message in gmailr at end"
+#if status is 100 then send email and halt execution
+
+#load cached email addresses
+source("git_ignore/email_addresses.R")
+
+#authentication key
+gm_auth_configure(path = "git_ignore/credentials.json")
+
+
+
+if (current_status == 100) {
+
+email_text <- paste("Automated email sent from dsca_course_catalogue_dev version",
+                    version_number,
+                    ". Status Condition =",
+                    current_status,
+                    ". Status message =",
+                    status_message)
+
+
+email_complete <- gm_mime() %>%
+  gm_to(recipients) %>%
+  gm_from(from_address) %>%
+  gm_subject("DSCA course catalogue executed with no action") %>%
+  gm_text_body(email_text)
+
+gm_send_message(email_complete)
+
+stop(current_status == 100)
+  
+}
+
+
+remove(list = 'condition_statuses',
+       'email_text',
+       'newstate_course_names',
+       'newstate_course_versions',
+       'prior_state_course_names',
+       'prior_state_course_versions',
+       
+       )
 

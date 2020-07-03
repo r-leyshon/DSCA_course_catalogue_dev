@@ -7,7 +7,7 @@ paste("Version", version_number, "of the course catalogue scraping project. Plea
 library('ProjectTemplate')
 load.project(load_libraries = TRUE,
              libraries = c("dplyr, plyr, rvest, selectr, xml2, stringr, jsonlite, tidyr, purrr, httr,
-                           httpuv, rlist"),
+                           httpuv, rlist, gmailr"),
              munging = TRUE
              )
 
