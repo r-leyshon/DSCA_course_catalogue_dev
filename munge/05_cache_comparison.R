@@ -115,7 +115,8 @@ source("git_ignore/email_addresses.R")
 
 #authentication key
 gm_auth_configure(path = "git_ignore/credentials.json")
-
+#execute using cached permissions
+gm_auth(email = TRUE, cache = ".secret")
 
 
 if (current_status == 100) {

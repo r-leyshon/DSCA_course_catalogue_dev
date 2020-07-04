@@ -1,0 +1,119 @@
+[1] "Version 2.5 of the course catalogue scraping project. Please see Readme for more details."
+Project name: DSCA_course_catalogue_dev
+Loading project configuration
+Autoloading packages
+ Loading package: plyr
+Loading required package: plyr
+ Loading package: dplyr
+Loading required package: dplyr
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:plyr’:
+
+    arrange, count, desc, failwith, id, mutate, rename, summarise,
+    summarize
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+ Loading package: rvest
+Loading required package: rvest
+Loading required package: xml2
+ Loading package: selectr
+Loading required package: selectr
+ Loading package: xml2
+ Loading package: stringr
+Loading required package: stringr
+ Loading package: jsonlite
+Loading required package: jsonlite
+ Loading package: tidyr
+Loading required package: tidyr
+ Loading package: purrr
+Loading required package: purrr
+
+Attaching package: ‘purrr’
+
+The following object is masked from ‘package:jsonlite’:
+
+    flatten
+
+The following object is masked from ‘package:rvest’:
+
+    pluck
+
+The following object is masked from ‘package:plyr’:
+
+    compact
+
+ Loading package: httr
+Loading required package: httr
+ Loading package: httpuv
+Loading required package: httpuv
+ Loading package: rlist
+Loading required package: rlist
+ Loading package: gmailr
+Loading required package: gmailr
+
+Attaching package: ‘gmailr’
+
+The following object is masked from ‘package:dplyr’:
+
+    id
+
+The following object is masked from ‘package:plyr’:
+
+    id
+
+The following object is masked from ‘package:utils’:
+
+    history
+
+The following objects are masked from ‘package:base’:
+
+    body, date, labels, message
+
+Autoloading helper functions
+ Running helper script: globals.R
+ Running helper script: helpers.R
+Autoloading data
+Munging data
+ Running preprocessing script: 01_GET_repo_urls.R
+[1] "There are 30 URLs to scrape link from: "
+ [1] "https://github.com/datasciencecampus/access-to-services"                      
+ [2] "https://github.com/datasciencecampus/algorithmia-segment"                     
+ [3] "https://github.com/datasciencecampus/algorithmia-vegetation"                  
+ [4] "https://github.com/datasciencecampus/anomaly-detection"                       
+ [5] "https://github.com/datasciencecampus/awesome-campus"                          
+ [6] "https://github.com/datasciencecampus/clapp"                                   
+ [7] "https://github.com/datasciencecampus/coding-standards"                        
+ [8] "https://github.com/datasciencecampus/coffee-and-coding"                       
+ [9] "https://github.com/datasciencecampus/coffee-and-coding-ldn"                   
+[10] "https://github.com/datasciencecampus/community-visualizations"                
+[11] "https://github.com/datasciencecampus/consultation-analysis-nafw"              
+[12] "https://github.com/datasciencecampus/deploy-dash-with-gcp"                    
+[13] "https://github.com/datasciencecampus/DSCA_advNLPpython"                       
+[14] "https://github.com/datasciencecampus/DSCA_ARP"                                
+[15] "https://github.com/datasciencecampus/DSCA_DSWR"                               
+[16] "https://github.com/datasciencecampus/DSCA_ggplot-leaflet-map-training"        
+[17] "https://github.com/datasciencecampus/DSCA_Intro-R"                            
+[18] "https://github.com/datasciencecampus/DSCA_introNLPpython"                     
+[19] "https://github.com/datasciencecampus/DSCA_intropython"                        
+[20] "https://github.com/datasciencecampus/DSCA_ML_theory"                          
+[21] "https://github.com/datasciencecampus/DSCA_NLPWR"                              
+[22] "https://github.com/datasciencecampus/DSCA_Stats4DS"                           
+[23] "https://github.com/datasciencecampus/DSCA_Version-control-with-Git-Github"    
+[24] "https://github.com/datasciencecampus/DSCA_Version-controlled-RStudio-projects"
+[25] "https://github.com/datasciencecampus/eclipse"                                 
+[26] "https://github.com/datasciencecampus/employmentProspects"                     
+[27] "https://github.com/datasciencecampus/energy-efficiency"                       
+[28] "https://github.com/datasciencecampus/finbins"                                 
+[29] "https://github.com/datasciencecampus/gcp-function-deployment"                 
+[30] "https://github.com/datasciencecampus/google-mobility-reports-data"            
+
+Execution halted

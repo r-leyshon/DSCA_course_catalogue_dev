@@ -12,5 +12,3 @@ load.project(load_libraries = TRUE,
              )
 
 
-"script runs without asking for gmailr authentication. however cronr isn't playing
-ball. need to crack this to automate"
