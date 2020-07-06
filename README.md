@@ -2,6 +2,7 @@
 
 Version Notes:
 ### 2.4
+* At start of script, look in zip folder and clear out if anything is present = stop stockpiling of zip folders
 * cache course list & version numbers for comparison on successive runs
 * write if statement to check on above conditions prior to Emailing
 * output full dataframe to publishing, but create informative Email describing reason for update

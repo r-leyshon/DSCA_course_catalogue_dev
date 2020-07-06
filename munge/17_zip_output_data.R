@@ -13,6 +13,19 @@ current_directory <- getwd()
 #create the folder name, using the sys.time to increment
 zip_folder_name <- paste0(current_directory,"/zipped_output/dsca_cc_", current_time, ".zip")
 
+
+#step to clear out any previous zipped folder prior to running
+fold <- 'zipped_output'
+
+# get all files in the directories, recursively, apart from the readme
+f <- grep(list.files(path = fold, include.dirs = F, full.names = T, recursive = T, pattern = 'zip$'),
+          pattern = 'zipped_output_readme.md', invert = TRUE, value = TRUE)
+
+# remove the files
+file.remove(f)
+
+
+
 #zip files to folder
 zip::zipr(zip_folder_name, files2zip)
 

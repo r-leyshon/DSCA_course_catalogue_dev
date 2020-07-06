@@ -189,7 +189,7 @@ extract_course_type <- function(pages){
 
 #pages <- parsed_course_pages[[11]]
 
-
+#pages <- parsed_course_pages[[1]]
 
 extract_lo_detail <- function(pages){
   
@@ -199,11 +199,11 @@ extract_lo_detail <- function(pages){
   lowered_list_text <- list_text %>% tolower()
   
   #subset this character vector by:
-  #start  - the last text value that contains "\n                  tags" plus one
+  #start  - the last text value that contains "tags" plus one
   #end - the first value that contains 'Github, Inc.' minus one
   #find first index
-  start_index <- grep("\n                  tags", lowered_list_text)[length(grep("\n                  tags", lowered_list_text))] + 1
-  
+  start_index <- grep("tags", lowered_list_text)[length(grep("tags", lowered_list_text))] + 1
+
   #find end index - updated to find f2f index
   end_index <- grep("face to face", lowered_list_text)[1] - 3
   
@@ -230,61 +230,7 @@ extract_lo_detail <- function(pages){
     next
   }
   
-  
-  
-################delete me
-  #need additional logic to catch start / end index having a zero length / NA
-  # if (length(start_index) == 0 | is.na(start_index) &
-  #     length(end_index) == 0 | is.na(end_index)){
-  #   
-  #   skill_levels <- c(skill_levels, "Skill level not found")
-  #   print(paste("start index not found for iteration ", count))
-  #   print(paste("end index not found for iteration ", count))
-  #   
-  # } else if (length(start_index) == 1 & length(end_index) == 0 | is.na(end_index)){
-  #   
-  #   #control flow based on missing end index
-  #   #save the extracted value using start index
-  #   skill_levels <- c(skill_levels, output_dataframe[count, start_index])
-  #   print(paste("Warning, end index not detected for iteration", count))
-  #   print(paste("start index used is", start_index))
-  #   print(paste("Output saved is", output_dataframe[count, start_index]))
-  #   
-  # } else if (length(end_index) == 1 & length(start_index) == 0 | is.na(start_index)){
-  #   
-  #   #control flow based on missing start index
-  #   #save the extracted value using end index
-  #   skill_levels <- c(skill_levels, output_dataframe[count, end_index])
-  #   print(paste("Warning, start index not detected for iteration", count))
-  #   print(paste("End index used is", end_index))
-  #   print(paste("Output saved is", output_dataframe[count, end_index]))
-  #   
-  # } else if (start_index == end_index) {
-  #   
-  #   #logic here relies on values for both indices
-  #   #control flow based on difference between start & end index
-  #   #save the extracted value from the matrix for this iteration
-  #   skill_levels <- c(skill_levels, output_dataframe[count, start_index])
-  #   print(paste("start index used is", start_index))
-  #   print(paste("Output saved is", output_dataframe[count, start_index]))
-  #   
-  # } else {
-  #   
-  #   # if start index differs to end index, then use the range to paste values
-  #   skill_levels <- c(skill_levels, paste(output_dataframe[count, (start_index):(end_index)], collapse = " "))
-  #   print(paste("End index used is", start_index:end_index))
-  #   print(paste("Output saved is", paste(output_dataframe[count, start_index:end_index], collapse = " ")))
-  #   
-  # }
-  # 
-  # 
-##############delete me
-  
-  
-  
-  
-  
-  
+
   
   #pull any list object that does not match a course type 
   lo_detail_test <- paste(user_generated_li[!(grepl("E learning", user_generated_li) |

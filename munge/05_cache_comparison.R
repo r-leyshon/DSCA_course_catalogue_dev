@@ -147,7 +147,7 @@ remove(list = 'condition_statuses',
        'newstate_course_names',
        'newstate_course_versions',
        'prior_state_course_names',
-       'prior_state_course_versions',
+       'prior_state_course_versions'
        
        )
 
