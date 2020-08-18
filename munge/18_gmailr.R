@@ -8,7 +8,9 @@ email_text <- paste("Automated email sent from dsca_course_catalogue_dev version
                     " Status Condition =",
                     current_status,
                     ". Status message =",
-                    status_message)
+                    status_message,
+                    ". Status override condition =",
+                    status_override)
 
 
 email_complete <- gm_mime() %>%

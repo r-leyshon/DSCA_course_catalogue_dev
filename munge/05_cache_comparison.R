@@ -119,7 +119,7 @@ gm_auth_configure(path = "git_ignore/credentials.json")
 gm_auth(email = TRUE, cache = ".secret")
 
 
-if (current_status == 100) {
+if (current_status == 100 & status_override == FALSE) {
 
 email_text <- paste("Automated email sent from dsca_course_catalogue_dev version",
                     version_number,
@@ -137,17 +137,16 @@ email_complete <- gm_mime() %>%
 
 gm_send_message(email_complete)
 
-stop(current_status == 100)
-  
+stop(current_status == 100 & status_override == FALSE)
+
 }
 
 
 remove(list = 'condition_statuses',
-       'email_text',
        'newstate_course_names',
        'newstate_course_versions',
        'prior_state_course_names',
        'prior_state_course_versions'
-       
+
        )
 

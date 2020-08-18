@@ -202,7 +202,7 @@ extract_lo_detail <- function(pages){
   #start  - the last text value that contains "tags" plus one
   #end - the first value that contains 'Github, Inc.' minus one
   #find first index
-  start_index <- grep("tags", lowered_list_text)[length(grep("tags", lowered_list_text))] + 1
+  start_index <- grep("commits", lowered_list_text)[length(grep("commits", lowered_list_text))] + 1
 
   #find end index - updated to find f2f index
   end_index <- grep("face to face", lowered_list_text)[1] - 3
