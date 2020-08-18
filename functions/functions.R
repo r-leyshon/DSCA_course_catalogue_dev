@@ -189,6 +189,8 @@ extract_course_type <- function(pages){
 
 #pages <- parsed_course_pages[[11]]
 
+#pages <- parsed_course_pages[[1]]
+
 extract_lo_detail <- function(pages){
   
   list_text <- pages %>% html_nodes("li") %>% html_text()
@@ -197,27 +199,38 @@ extract_lo_detail <- function(pages){
   lowered_list_text <- list_text %>% tolower()
   
   #subset this character vector by:
-  #start  - the last text value that contains "\n                  tags" plus one
+  #start  - the last text value that contains "tags" plus one
   #end - the first value that contains 'Github, Inc.' minus one
   #find first index
-  start_index <- grep("\n                  tags", lowered_list_text)[length(grep("\n                  tags", lowered_list_text))] + 1
-  
-  #find end index
-  end_index <- grep("github, inc.", lowered_list_text)[1] - 1
+  start_index <- grep("commits", lowered_list_text)[length(grep("commits", lowered_list_text))] + 1
+
+  #find end index - updated to find f2f index
+  end_index <- grep("face to face", lowered_list_text)[1] - 3
   
   #in the case of missing readmes, the above method of finding indexes can result in an end_index smaller
   #than start_index. Check for this condition and assign a placeholder
   
-  if (start_index <= end_index){
+
+    
+    #course title extracted from 2nd h3 xpath. This is the try.
+  
+  if (length(start_index) == 0 | is.na(start_index) &
+      length(end_index) == 0 | is.na(end_index)){
+    
+    user_generated_li <- "Learning Objectives Not Found"
+    
+  } else if (start_index <= end_index){
     
     #subset the character vector by these indices
     user_generated_li <- list_text[start_index:end_index]
+    
   } else {
-    lo_detail <- "No readme found"
-    return(lo_detail)
+    user_generated_li <- "Learning Objectives Not Found"
+    return(user_generated_li)
     next
   }
   
+
   
   #pull any list object that does not match a course type 
   lo_detail_test <- paste(user_generated_li[!(grepl("E learning", user_generated_li) |
@@ -233,4 +246,8 @@ extract_lo_detail <- function(pages){
   return(lo_detail)
   
 } #end of function
+
+
+
+
 

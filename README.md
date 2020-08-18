@@ -1,6 +1,18 @@
 # Course Catalogue Scrape
 
 Version Notes:
+### 2.5
+* Script 04_scrape_version now filters out any rows with no version number (~ equal to non standardised readme)
+* extract_lo_detail() function grep pattern switched from "tags" to "commits"
+• Including a status ovveride feature to ignore cache comparison and push scripts to conclusion.
+
+### 2.4
+* At start of script, look in zip folder and clear out if anything is present = stop stockpiling of zip folders
+* cache course list & version numbers for comparison on successive runs
+* write if statement to check on above conditions prior to Emailing
+* output full dataframe to publishing, but create informative Email describing reason for update
+* move updating 'if statement' towards front of script and only execute remainder when required
+
 
 ### 2.3
 * Course duration script added

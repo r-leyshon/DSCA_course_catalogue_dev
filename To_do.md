@@ -1,11 +1,12 @@
-### v2.3
+### v2.6
 
-* cache course list & version numbers for comparison on successive runs
-* write if statement to check on above conditions prior to Emailing
-* output full dataframe to publishing, but create informative Email describing reason for update
-* move updating 'if statement' towards front of script and only execute remainder when required
-* At start of script, look in zip folder and clear out if anything is present = stop stockpiling of zip folders
-
+* Lint each script
+• Issue on 14_scrape_lo_detail.R - list nodes keep changing format and resulting in length 0 issue. 
+* Suggest using nested if statements to try and catch variability in list nodes. 
+* Function is extract_lo_detail()
+• Needed to change numerous times. Previous grep pattern was "tags"
+• Now using "commits" pattern for grep
+* Need more error handling and exception handling in regards to this.
 
 ### Parked
 * schedule script execution on remote server
