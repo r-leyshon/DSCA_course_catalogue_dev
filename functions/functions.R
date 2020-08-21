@@ -123,13 +123,21 @@ extract_course_description <- function(pages){
   #assign parsed page
   paragraph_nodes <- pages %>% html_nodes("p") %>% html_text()
   
+  #subset this character vector by:
+  #start - find the first node containing "Course Duration"
+  #find first index
+  start_index <- grep("Course Duration", paragraph_nodes)[length(grep("Course Duration", paragraph_nodes))]
+  
+  paragraph_nodes[str_detect(paragraph_nodes, "Course Duration")]
+  
   #extract content of interest
-  uncleansed_text <- paragraph_nodes[12:length(paragraph_nodes)]
+  uncleansed_text <- paragraph_nodes[start_index:length(paragraph_nodes)]
   
   #replace all "\n" with a space
   cleansed_text <- str_replace_all(uncleansed_text, "\n", " ")
   
 }
+
 
 
 #########################11_scrape_readme_listnodes.R############extract_course_type#########################

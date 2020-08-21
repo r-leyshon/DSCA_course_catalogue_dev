@@ -1,6 +1,11 @@
 # Course Catalogue Scrape
 
 Version Notes:
+
+### 2.6
+* extract_course_description() required dynamic start index due to change in <p> node structure of website.
+
+
 ### 2.5
 * Script 04_scrape_version now filters out any rows with no version number (~ equal to non standardised readme)
 * extract_lo_detail() function grep pattern switched from "tags" to "commits"

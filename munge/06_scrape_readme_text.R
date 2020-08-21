@@ -1,6 +1,5 @@
 #purpose of script: scrape  readme paragraph text
 
-
 #apply the function to extract course descriptions from the parsed course list
 course_desc_list <- lapply(parsed_course_pages, FUN = extract_course_description)
 

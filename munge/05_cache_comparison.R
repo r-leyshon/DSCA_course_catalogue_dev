@@ -1,6 +1,14 @@
 # purpose of script: compare current state with cached versions
 # generate state conditions to use in Gmailr Email message
 
+#load cached email addresses
+source("git_ignore/email_addresses.R")
+
+#authentication key
+gm_auth_configure(path = "git_ignore/credentials.json")
+#execute using cached permissions
+gm_auth(email = TRUE, cache = ".secret")
+
 
 #Need some condition statuses to print and Email
 #100 no change detected
@@ -8,6 +16,10 @@
 #102 new course detected
 #103 course removed
 #104 course version changed
+#105 condition status override is assigned in 18_gmailr.R if required
+
+# only run this if programmer has specified prior_state_ignore == FALSE
+if (prior_state_ignore == FALSE){
 
 condition_statuses <- c(100, 101, 102, 103, 104)
 
@@ -110,15 +122,6 @@ saveRDS(object = newstate_course_versions, file = "cache/prior_courseversions.rd
 
 #if status is 100 then send email and halt execution
 
-#load cached email addresses
-source("git_ignore/email_addresses.R")
-
-#authentication key
-gm_auth_configure(path = "git_ignore/credentials.json")
-#execute using cached permissions
-gm_auth(email = TRUE, cache = ".secret")
-
-
 if (current_status == 100 & status_override == FALSE) {
 
 email_text <- paste("Automated email sent from dsca_course_catalogue_dev version",
@@ -149,4 +152,5 @@ remove(list = 'condition_statuses',
        'prior_state_course_versions'
 
        )
+} # end of if statement conditional on prior_state_ignore == TRUE
 

@@ -1,5 +1,4 @@
 #function of script: extract course durations
-
 #lower case of all columns
 lowered_output <- 
   apply(output_dataframe,

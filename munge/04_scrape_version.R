@@ -1,6 +1,5 @@
 "function of script: scrape course version number"
 
-
 #iterate over the parsed_course_pages list and extract the course version numbers
 
 course_version_list <- lapply(parsed_course_pages, FUN = extract_version)

@@ -1,5 +1,12 @@
 #purpose of script: Automated email of zipped output data
 
+# if prior_state_ignore has been set to TRUE, use this as the status condition
+#105 cache comparison override
+if(prior_state_ignore == TRUE){
+  current_status <- 105
+  status_message <- paste0("Comparison with previous catalogue state has been diabled by the developer.")
+}
+
 
 
 email_text <- paste("Automated email sent from dsca_course_catalogue_dev version",
