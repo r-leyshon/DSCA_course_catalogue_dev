@@ -24,8 +24,7 @@ output_dataframe[output_dataframe == "Go back"] <- NA
 
 
 #put a prefix in front of all text columns present
-colnames(output_dataframe)[5:ncol(output_dataframe)] <-  paste0("Paragraph_", colnames(output_dataframe)[5:ncol(output_dataframe)])
-
+colnames(output_dataframe)[(grep("version_number", names(output_dataframe))+1):ncol(output_dataframe)] <-  paste0("Paragraph_", colnames(output_dataframe)[6:ncol(output_dataframe)])
 
 
 

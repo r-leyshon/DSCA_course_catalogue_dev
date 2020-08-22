@@ -1,6 +1,5 @@
 ### v2.6
 
-* Include license detail available from Github API
 * Lint each script
 • Issue on 14_scrape_lo_detail.R - list nodes keep changing format and resulting in length 0 issue. 
 * Suggest using nested if statements to try and catch variability in list nodes. 

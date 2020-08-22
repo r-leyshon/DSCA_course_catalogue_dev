@@ -1,7 +1,6 @@
 #purpose of file: filter outputs to required specification
 
 
-
 output_dataframe <- output_dataframe %>% select(readme_title,
                                                 version_number,
                                                 course_duration,
@@ -13,6 +12,7 @@ output_dataframe <- output_dataframe %>% select(readme_title,
                                                 site_link,
                                                 lead_developer,
                                                 course_reviewer,
+                                                license_name
                                                 )
 
 

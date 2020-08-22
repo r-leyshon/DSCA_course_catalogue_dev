@@ -138,7 +138,10 @@ email_complete <- gm_mime() %>%
   gm_subject("DSCA course catalogue executed with no action") %>%
   gm_text_body(email_text)
 
+
+if(send_emails == TRUE) {
 gm_send_message(email_complete)
+}
 
 stop(current_status == 100 & status_override == FALSE)
 
