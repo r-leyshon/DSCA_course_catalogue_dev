@@ -3,7 +3,7 @@
 Version Notes:
 
 ### 2.6
-* Lint each script - styler applpied and linter guidance actioned.
+* Lint each script - styler applied and linter guidance actioned.
 * Include license detail available from Github API
 • Improved efficiency by 35.56577 seconds by moving 'DSCA' pattern filter forward
 * query parameter updated to include up to 100 results per page
