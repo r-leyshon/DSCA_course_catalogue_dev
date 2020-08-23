@@ -3,8 +3,9 @@
 Version Notes:
 
 ### 2.6
+* Lint each script - styler applpied and linter guidance actioned.
 * Include license detail available from Github API
-• Improved efifciency by 35.56577 seconds by moving 'DSCA' pattern filter forward
+• Improved efficiency by 35.56577 seconds by moving 'DSCA' pattern filter forward
 * query parameter updated to include up to 100 results per page
 • Added control logic to allow control over sending of Emails from initialise.R script
 * Add logic to control previous run cache status on or off
