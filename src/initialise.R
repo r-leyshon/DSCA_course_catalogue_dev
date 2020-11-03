@@ -8,20 +8,20 @@ paste("Version", version_number,
 # Setting this to TRUE disables the cache comparison feature when deciding
 # whether to Email with attachments or not. Setting to TRUE will force Email
 # including output dataframe
-status_override <- TRUE
+status_override <- FALSE
 
 # Setting this to TRUE prevents the cache_comparison with prior catalogue state
 # and cacheing. Use this when working on script without losing the catalogue
 # states
-prior_state_ignore <- TRUE
+prior_state_ignore <- FALSE
 
 # Need control over sending of Emails.
-send_emails <- FALSE
+send_emails <- TRUE
 
 library(ProjectTemplate)
 load.project(load_libraries = TRUE,
              libraries = c("plyr, dplyr, rvest, selectr, xml2, stringr,
-             jsonlite, tidyr, purrr, httr, httpuv, rlist, gmailr"),
+             jsonlite, tidyr, purrr, httr, httpuv, rlist, gmailr, here"),
              munging = TRUE
              )
 

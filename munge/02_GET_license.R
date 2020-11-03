@@ -4,7 +4,11 @@
 dsca_content <- req_content[grep("DSCA", req_content)]
 
 # select all repo_descriptions
-all_licenses <- list.select(dsca_content, license$name)
+all_licenses <- list.select(dsca_content, license = license$name, description)
+# filter out any "(pending review)" patterns - repititious step, refactor
+all_licenses <- all_licenses[!grepl("(pending review)", all_licenses)]
+# select license name only
+all_licenses <- list.select(all_licenses, license)
 
 
 # store as character vector for cbind_fill

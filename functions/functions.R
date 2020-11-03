@@ -111,6 +111,7 @@ extract_version <- function(pages) {
 # 07_scrape_readme_text.R -------------------------------------------------
 # extract_course_description ----------------------------------------------
 
+
 extract_course_description <- function(pages) {
 
   # assign parsed page
@@ -123,8 +124,9 @@ extract_course_description <- function(pages) {
   # find first index
   start_index <- grep("Course Duration", paragraph_nodes)[length(grep(
     "Course Duration", paragraph_nodes))]
-
-  paragraph_nodes[str_detect(paragraph_nodes, "Course Duration")]
+  print(paste(start_index))
+  
+  # paragraph_nodes[str_detect(paragraph_nodes, "Course Duration")]
 
   # extract content of interest
   uncleansed_text <- paragraph_nodes[start_index:length(paragraph_nodes)]

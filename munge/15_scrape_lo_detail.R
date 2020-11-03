@@ -16,7 +16,7 @@ remove(
   list = "lo_detail",
   "lo_detail_list",
   "extract_lo_detail",
-  "cbind.fill",
+  "cbind_fill",
   "all_pages",
   "parsed_course_pages"
 )

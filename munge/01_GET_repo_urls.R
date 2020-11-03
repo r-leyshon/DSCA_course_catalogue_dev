@@ -39,17 +39,28 @@ if (http_error(request_result)) {
 }
 
 
-# select all html_url items and stack as dataframe
-all_pages <- list.stack(list.select(req_content, html_url))
+# select all repo descriptions, suppress warnings as repos without descriptions
+# are coerced to NAs and that is expected
+all_descriptions <- suppressWarnings(
+  list.stack(list.select(req_content, html_url, description))
+)
 
 
 
-# extract as a character vector
-all_pages <- all_pages[, 1]
 
+# add warning as number of repos approaches 100
+if (length(all_descriptions$html_url) >= 90){
+  warning(paste("Warning, number of repositories is approaching api page limit
+                of 100. Current Repo count is:", length(all_pages$html_url)))
+  
+}
 
-print(paste("There are", length(all_pages), "URLs to scrape link from: "))
-print(all_pages)
+# filter out any row where the agreed pattern "(pending review)" is detected.
+all_descriptions <- filter(all_descriptions, !grepl("(pending review)", description))
+
+# extract repo names as a character vector
+all_pages <- all_descriptions[, 1]
+
 
 # filter these urls to dsca rows only.
 dsca_pages <- all_pages[grep("DSCA", all_pages)]
@@ -71,7 +82,7 @@ course_repo_names <- str_remove(course_repo_names, "/datasciencecampus/")
 print(
   paste(
     "There are", length(course_repo_names),
-    "repos found. Here are the names: "
+    "Faculty repos found. Here are the names: "
   )
 )
 
@@ -103,5 +114,6 @@ remove(list = c(
   "gtoken",
   "myapp",
   "request_result",
-  "course_repo_names"
+  "course_repo_names",
+  "all_descriptions"
 ))
