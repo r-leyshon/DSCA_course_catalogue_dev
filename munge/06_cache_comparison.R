@@ -46,90 +46,141 @@ against previous caches"
 
   # conditional flow create email message -----------------------------------
 
+# detect new courses
+new_course <- setdiff(newstate_course_names, prior_state_course_names)
+# detect removed courses
+removed_course <- setdiff(prior_state_course_names, newstate_course_names)
 
-  if (all(newstate_course_versions == prior_state_course_versions)) {
-    current_status <- condition_statuses[1]
-    status_message <- "Course catalogue script run. No change detected."
-    print(current_status)
-    print(status_message)
-  } else if (length(setdiff(
-    x = newstate_course_names,
-    y = prior_state_course_names
-  )) > 0 &
-    length(setdiff(
-      x = prior_state_course_names,
-      y = newstate_course_names
-    )) > 0) {
-    new_course <- setdiff(
-      x = newstate_course_names,
-      y = prior_state_course_names
-    )
-    removed_course <- setdiff(
-      x = prior_state_course_names,
-      y = newstate_course_names
-    )
+# detecting no change on either side of the comparison
+if (length(new_course) == 0 & length(removed_course) == 0) {
+  current_status <- condition_statuses[1]
+  status_message <- "Course catalogue script run. No change detected."
+} else if (
+  # next changes to both sides
+  length(new_course) > 0 & length(removed_course) > 0) {
+  current_status <- condition_statuses[2]
+  status_message <- paste0(
+    "The following course(s) have been added: ",
+    paste0(new_course, collapse = ", "),
+    ". In addition, the following course(s) have been removed: ",
+    paste0(removed_course, collapse = ", ")
+  )
+}
 
-    current_status <- condition_statuses[2]
-    print(current_status)
-    status_message <- paste0(
-      "The following course(s) have been added: ", paste0(new_course,
-        collapse = ", "
-      ),
-      ". In addition, the following course(s) have been removed: ",
-      paste0(removed_course, collapse = ", ")
-    )
-    print(status_message)
-  } else if (length(setdiff(
-    x = newstate_course_names,
-    y = prior_state_course_names
-  )) > 0 &
-    length(setdiff(
-      x = prior_state_course_names,
-      y = newstate_course_names
-    )) == 0) {
-    new_course <- setdiff(
-      x = newstate_course_names,
-      y = prior_state_course_names
-    )
-    current_status <- condition_statuses[3]
-    print(current_status)
-    status_message <- paste0(
-      "The following course(s) have been added: ",
-      paste0(new_course, collapse = ", ")
-    )
-    print(status_message)
-  } else if (length(setdiff(
-    x = newstate_course_names,
-    y = prior_state_course_names
-  )) == 0 &
-    length(setdiff(
-      x = prior_state_course_names,
-      y = newstate_course_names
-    )) > 0) {
-    removed_course <- setdiff(
-      x = prior_state_course_names,
-      y = newstate_course_names
-    )
-    current_status <- condition_statuses[4]
-    print(current_status)
-    status_message <- paste0(
-      "The following course(s) have been removed: ",
-      paste0(removed_course, collapse = ", ")
-    )
-    print(status_message)
-  } else {
-    updated_course <- setdiff(
-      x = newstate_course_versions,
-      y = prior_state_course_versions
-    )
-    current_status <- condition_statuses[5]
-    print(current_status)
-    status_message <- paste0(
-      "The following course version(s) have been updated: ",
-      paste0(updated_course, collapse = ", ")
-    )
-    print(status_message)
-  }
+# detect changes on one side only
+# list the new and removed courses
+course_changes <- list(new_course = new_course,
+                       removed_course = removed_course)
+# subset the longer of the 2 elements, expected to run gracefully if either
+# is an empty character
+change_made <- course_changes[which.max(lengths(course_changes))]
+# new courses added
+if (names(change_made) == "new_course"){
+  current_status <- condition_statuses[3]
+  status_message <- paste0(
+    "The following course(s) have been added: ",
+    paste0(new_course, collapse = ", ")
+  )
+# courses removed
+} else if (names(change_made) == "removed_course") {
+  current_status <- condition_statuses[4]
+  status_message <- paste0(
+    "The following course(s) have been removed: ",
+    paste0(removed_course, collapse = ", ")
+  )
+} else {
+  updated_course <- setdiff(newstate_course_versions,
+                            prior_state_course_versions)
+  current_status <- condition_statuses[5]
+  status_message <- paste0(
+    "The following course version(s) have been updated: ",
+    paste0(updated_course, collapse = ", ")
+  )
+}
+
+print(paste0("Status code: ", current_status,
+             " Status message: ", status_message))
+
+
+
+
+
+
+# # detecting no change on either side of the comparison
+#   if (length(setdiff(newstate_course_names, prior_state_course_names)) == 0 &
+#       length(setdiff(prior_state_course_names, newstate_course_names == 0))) {
+#     current_status <- condition_statuses[1]
+#     status_message <- "Course catalogue script run. No change detected."
+#     print(paste0("Status code: ", current_status,
+#                  " Status message: ", status_message))
+#   } else if (
+#     # next condition detects unmatched values on both sides
+#     length(setdiff(newstate_course_names, prior_state_course_names)) > 0 &
+#     length(setdiff(prior_state_course_names, newstate_course_names)) > 0) {
+#     # assign unmatched in newstate as new courses
+#     new_course <- setdiff(newstate_course_names, prior_state_course_names)
+#     # assign unmatched in prior state as removed courses
+#     removed_course <- setdiff(prior_state_course_names, newstate_course_names)
+#     current_status <- condition_statuses[2]
+#     status_message <- paste0(
+#       "The following course(s) have been added: ",
+#       paste0(new_course, collapse = ", "),
+#       ". In addition, the following course(s) have been removed: ",
+#       paste0(removed_course, collapse = ", ")
+#     )
+#     print(paste0("Status code: ", current_status,
+#                  " Status message: ", status_message))
+#   } else if (length(setdiff(
+#     x = newstate_course_names,
+#     y = prior_state_course_names
+#   )) > 0 &
+#     length(setdiff(
+#       x = prior_state_course_names,
+#       y = newstate_course_names
+#     )) == 0) {
+#     new_course <- setdiff(
+#       x = newstate_course_names,
+#       y = prior_state_course_names
+#     )
+#     current_status <- condition_statuses[3]
+#     print(current_status)
+#     status_message <- paste0(
+#       "The following course(s) have been added: ",
+#       paste0(new_course, collapse = ", ")
+#     )
+#     print(status_message)
+#   } else if (length(setdiff(
+#     x = newstate_course_names,
+#     y = prior_state_course_names
+#   )) == 0 &
+#     length(setdiff(
+#       x = prior_state_course_names,
+#       y = newstate_course_names
+#     )) > 0) {
+#     removed_course <- setdiff(
+#       x = prior_state_course_names,
+#       y = newstate_course_names
+#     )
+#     current_status <- condition_statuses[4]
+#     print(current_status)
+#     status_message <- paste0(
+#       "The following course(s) have been removed: ",
+#       paste0(removed_course, collapse = ", ")
+#     )
+#     print(status_message)
+#   } else {
+#     updated_course <- setdiff(
+#       x = newstate_course_versions,
+#       y = prior_state_course_versions
+#     )
+#     current_status <- condition_statuses[5]
+#     print(current_status)
+#     status_message <- paste0(
+#       "The following course version(s) have been updated: ",
+#       paste0(updated_course, collapse = ", ")
+#     )
+#     print(status_message)
+#   }
 
 
   # update prior version & prior course names -------------------------------

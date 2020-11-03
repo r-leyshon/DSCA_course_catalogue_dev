@@ -13,10 +13,10 @@ status_override <- FALSE
 # Setting this to TRUE prevents the cache_comparison with prior catalogue state
 # and cacheing. Use this when working on script without losing the catalogue
 # states
-prior_state_ignore <- FALSE
+prior_state_ignore <- TRUE
 
 # Need control over sending of Emails.
-send_emails <- TRUE
+send_emails <- FALSE
 
 library(ProjectTemplate)
 load.project(load_libraries = TRUE,

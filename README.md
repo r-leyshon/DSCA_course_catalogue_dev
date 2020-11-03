@@ -12,6 +12,7 @@ Version Notes:
 * extract_course_description() required dynamic start index due to change in <p> node structure of website.
 * Added warning message in 01_GET_repo_urls.R when repo number is approaching page limit.
 * Repo description patter "(pending review)" filtered out in 01_GET_repo_urls.R
+* Control flow in 06_cache_comparison.R revised to run gracefully when courses removed.
 
 
 ### 2.5
